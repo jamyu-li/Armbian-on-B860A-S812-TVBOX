@@ -4,3 +4,4 @@
 ##  Build from source like
 ###  $./compile.sh BOARD=aml-s812-b860 RELEASE=trixie BUILD_DESKTOP=no BUILD_MINIMAL=yes KERNEL_CONFIGURE=no
 ###  也可以使用我编译好的镜像直接从SD卡启动Armbian Linux.
+#### (文件名包含 *_with_wifi_* 的支持板载 wifi 但不支持板载 emmc;文件名包含 *_with_emmc_* 的支持板载 emmc 但不支持板载 wifi.）
