@@ -1,0 +1,11 @@
+diff --git a/arch/arm/boot/dts/amlogic/Makefile b/arch/arm/boot/dts/amlogic/Makefile
+index a84310780ea3..9d7443bc0c42 100644
+--- a/arch/arm/boot/dts/amlogic/Makefile
++++ b/arch/arm/boot/dts/amlogic/Makefile
+@@ -6,4 +6,6 @@ dtb-$(CONFIG_MACH_MESON8) += \
+ 	meson8b-ec100.dtb \
+ 	meson8b-mxq.dtb \
+ 	meson8b-odroidc1.dtb \
++	meson8b-onecloud.dtb \
++	meson8m2-b860a.dtb \
+ 	meson8m2-mxiii-plus.dtb
