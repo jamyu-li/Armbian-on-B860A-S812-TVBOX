@@ -5,4 +5,4 @@
 ##  Build from source like
 ###  $./compile.sh BOARD=aml-s812-b860 RELEASE=trixie BUILD_DESKTOP=no BUILD_MINIMAL=yes KERNEL_CONFIGURE=no
 ###  You can also use the image I compiled to directly boot Armbian from an SD card.
-####（The file named *_with_wifi_* support wifi on board but emmc;The file named *_with_emmc_* support emmc on board but wifi.）
+#### （The file named *_with_wifi_* support wifi on board but emmc;The file named *_with_emmc_* support emmc on board but wifi.）
