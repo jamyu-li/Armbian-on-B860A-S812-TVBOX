@@ -1,0 +1,16 @@
+# ZTE B860A TV box based on Amlogic S812 quad core 1GB RAM SoC GBE
+BOARD_NAME="ZTE-B860A"
+BOARD_VENDOR="amlogic"
+BOARDFAMILY="meson8b"
+BOARD_MAINTAINER=""
+INTRODUCED="2015"
+KERNEL_TARGET="current"
+KERNEL_TEST_TARGET="current"
+BOOTCONFIG="none"
+BOOTSCRIPT="boot-aml-s805-mxq.cmd:boot.cmd"
+# The preinstalled U-BOOT looks for this script
+BOOTSCRIPT_OUTPUT="s805_autoscript"
+BOOTENV_FILE="aml-s812-b860a.txt"
+
+BOOTSIZE="200"
+BOOTFS_TYPE="fat"
