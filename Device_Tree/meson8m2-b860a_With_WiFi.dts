@@ -78,14 +78,22 @@
 //	};
 
 	leds-power {
-    	compatible = "gpio-leds";
+    		compatible = "gpio-leds";
 
-    	power {
-        	label = "b860a:green:power";
-        	gpios = <&gpio_ao GPIOAO_6 GPIO_ACTIVE_HIGH>; /* pins_on=1 → ACTIVE_HIGH */
-        	linux,default-trigger = "default-on";
-        	linux,panic-indicator;
-    	};
+    		/* 绿灯：进内核常亮，panic 时灭 */
+    		power-green {
+        		label = "b860a:green:power";
+        		gpios = <&gpio_ao GPIOAO_6 GPIO_ACTIVE_HIGH>; /* pins_on=1 → ACTIVE_HIGH */
+        		linux,default-trigger = "default-on";
+        		linux,panic-indicator;/* panic 时自动写 0 → 绿灯灭 */
+    		};
+    		
+    		/* 红灯：平时灭，panic 时亮 */
+    		power-red {
+    		label = "b860a:red:power";
+    		gpios = <&gpio_ao GPIOAO_13 GPIO_ACTIVE_HIGH>; /* 高电平亮红 */
+    		linux,default-trigger = "panic"; /* 仅 panic 时激活 */
+    		};
 	};
 
 	leds-network {
@@ -102,7 +110,7 @@
         		// led-events = "link", "rx", "tx";
   	  	};
   	  	
-  	  	/* 红灯 — 常亮（当绿灯灭时就是红色）*/
+  	  	/* 红灯 */
     		lan-link {
         		label = "b860a:red:lan";
         		gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
