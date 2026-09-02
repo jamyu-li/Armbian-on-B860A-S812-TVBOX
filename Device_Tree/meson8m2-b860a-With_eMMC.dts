@@ -88,14 +88,14 @@
         		linux,panic-indicator;/* panic 时自动写 0 → 绿灯灭 */
     		};
     		
-    		/* 红灯：平时灭，panic 时亮 */
+    		/* 红灯：平时灭，SD读写时亮 */
     		power-red {
     		label = "b860a:red:power";
     		gpios = <&gpio_ao GPIOAO_13 GPIO_ACTIVE_HIGH>; /* 高电平亮红 */
-    		linux,default-trigger = "panic"; /* 仅 panic 时激活 */
+    		linux,default-trigger = "mmc0"; /* SD读写显示 */
     		};
 	};
-	
+
 	leds-network {
     		compatible = "gpio-leds";
  			pinctrl-0 = <&lan_led_pins>;
@@ -108,9 +108,9 @@
         		linux,default-trigger = "netdev";
         		ledtrigu-sources = <&ethmac>;
         		// led-events = "link", "rx", "tx";
-			};
+  	  	};
   	  	
-  	  	/* 红灯*/
+  	  	/* 红灯 */
     		lan-link {
         		label = "b860a:red:lan";
         		gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
@@ -396,7 +396,7 @@
 //	disable-wp;
 //
 //	mmc-pwrseq = <&sdio_pwrseq>;
-
+//
 //	vmmc-supply = <&vcc_3v3>;
 //	vqmmc-supply = <&vcc_3v3>;
 // };
