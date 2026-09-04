@@ -396,7 +396,7 @@ index 000000000000..111111111111
 +//    status = "disabled";   /* eMMC 版盒子必须关 */
 +// };
 +
-+/* WiFi （与eMMC同资源，主线中无法共用）*/
++/* WiFi （Realtek RTL8189ES;与eMMC同资源，主线中无法共用）*/
 +&sdhc {
 +	status = "okay";
 +
