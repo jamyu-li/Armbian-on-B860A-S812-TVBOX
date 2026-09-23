@@ -5,15 +5,15 @@ Subject: ARM: dts: meson8b: Add DTS for ZTE B860A
 
 Signed-off-by: Jamyu <jamyu@163.com>
 ---
- arch/arm/boot/dts/amlogic/meson8m2-b860a.dts | 462 ++++++++++
- 1 files changed, 462 insertions(+)
+ arch/arm/boot/dts/amlogic/meson8m2-b860a.dts | 477 ++++++++++
+ 1 files changed, 464 insertions(+)
 
 diff --git a/arch/arm/boot/dts/amlogic/meson8m2-b860a.dts b/arch/arm/boot/dts/amlogic/meson8m2-b860a.dts
 new file mode 100644
 index 000000000000..111111111111
 --- /dev/null
 +++ b/arch/arm/boot/dts/amlogic/meson8m2-b860a.dts
-@@ -0,0 +1,462 @@
+@@ -0,0 +1,477 @@
 +/*
 + * Copyright (c) 2026 Jamyu Li <jamyu@163.com>.
 + *
@@ -108,7 +108,7 @@ index 000000000000..111111111111
 +    		power-red {
 +    		label = "b860a:red:power";
 +    		gpios = <&gpio_ao GPIOAO_13 GPIO_ACTIVE_HIGH>; /* 高电平亮红 */
-+    		linux,default-trigger = "mmc0"; /* SD读写时亮 */
++    		linux,default-trigger = "mmc0"; /* SD读写显示 */
 +    		};
 +	};
 +
@@ -117,22 +117,37 @@ index 000000000000..111111111111
 + 			pinctrl-0 = <&lan_led_pins>;
 +			pinctrl-names = "default";
 +
-+    		/* 绿灯 — 网络数据流 */
++    		/* 绿灯：Link时常亮，有流量时闪烁 */
 +    		lan_data {
 +        		label = "b860a:green:lan";
 +        		gpios = <&gpio GPIOX_18 GPIO_ACTIVE_HIGH>;
 +        		linux,default-trigger = "netdev";
-+        		ledtrigu-sources = <&ethmac>;
-+        		// led-events = "link", "rx", "tx";
++        		linux,trigger-sources = <&ethmac>;
++        		linux,netdev-events = "link", "rx", "tx";
++        		default-state = "off";
 +  	  	};
 +  	  	
-+  	  	/* 红灯 */
++  	  	/* 红灯：待定义，由 udev/ifplugd 通过 sysfs 控制， */
 +    		lan-link {
 +        		label = "b860a:red:lan";
 +        		gpios = <&gpio GPIOX_19 GPIO_ACTIVE_HIGH>;
-+        		// linux,default-trigger = "default-on";
-+        		///* 默认不亮需要在userspace 写控制 */
-+           			
++        		linux,default-trigger = "none";
++        		// linux,trigger-sources = <&ethmac>;
++        		// linux,netdev-events = "link";
++        		default-state = "off"; /* 初始默认不亮 */        		
++    		};
++	};
++	
++	leds-ir {
++    		compatible = "gpio-leds";
++
++    		/* 设备IR状态灯：改其它用途 */
++    		ir-status {
++        		label = "b860a:red:ir";
++        		gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_HIGH>;
++        		// linux,default-trigger = "rc-feedback"; /* 收到遥控信号就亮 */
++        		linux,default-trigger = "heartbeat"; /* 改为系统心跳，系统活着就双闪，死机就停 */
++        		default-state = "off";   /* 待机不亮 */
 +    		};
 +	};
 +
