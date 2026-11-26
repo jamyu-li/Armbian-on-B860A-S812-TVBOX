@@ -8,4 +8,5 @@ setenv start_usb_autoscript 'for usbdev in 0 1 2 3; do if fatload usb ${usbdev} 
 setenv start_emmc_autoscript 'if fatload mmc 1 11000000 emmc_autoscript; then autoscr 11000000; fi'
 
 saveenv
+reset
 
