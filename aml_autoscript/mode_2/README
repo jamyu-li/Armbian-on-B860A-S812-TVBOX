@@ -1,0 +1,3 @@
+Some u-boot can't save bootenv, use this file for boot.
+Copy this file to the boot partition.
+You must run 'reboot update' every time for external drive boot.
